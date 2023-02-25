@@ -21,7 +21,6 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Sign plugin
-        working-directory: ./dist
         env:
           GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
           ROOT_URLS: https://dashboards.cloud.loftorbital.com,https://dashboards.sandbox.loftorbital.com
