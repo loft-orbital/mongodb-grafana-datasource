@@ -20,6 +20,12 @@ jobs:
           node-version: 18.x
       - run: npm ci
       - run: npm run build
+      - name: Sign plugin
+        working-directory: ./dist
+        env:
+          GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
+          ROOT_URLS: https://dashboards.cloud.loftorbital.com,https://dashboards.sandbox.loftorbital.com
+        run: npx @grafana/sign-plugin --rootUrls $ROOT_URLS
       - uses: montudor/action-zip@v1
         with:
           args: zip -qq -r grafana-plugin.zip dist    
